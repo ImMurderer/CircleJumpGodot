@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Objects/Main.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Screens.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio/Music_Light-Puzzles.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Objects/Background.tscn" type="PackedScene" id=5]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+
+[node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( 238.8, 660 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 238.503, 659.859 )
+offset = Vector2( 0, -200 )
+current = true
+smoothing_enabled = true
+
+[node name="Screens" parent="." instance=ExtResource( 2 )]
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Background" parent="." instance=ExtResource( 5 )]
+
+[node name="MusicFade" type="Tween" parent="."]
+[connection signal="start_game" from="Screens" to="." method="new_game"]
